@@ -1,0 +1,35 @@
+botao_teste = Botao(150,50,botao_teste,botao_teste_clicado,botao_teste_emcima)
+botao_teste.desenhar(tela)
+
+'''
+        ###mais botao teste###
+        botao_testecoll = botao_teste.rect
+        posicao_mouse = pygame.mouse.get_pos()
+        if pygame.Rect.collidepoint(botao_testecoll,posicao_mouse):
+            botao_teste.desenhar_emcima(tela)
+        else:
+            botao_teste.desenhar(tela)
+        ###mais botao teste###
+
+
+'''
+******if clique do mouse == 1********
+            ###botao teste####
+            botao_testecoll = botao_teste.rect
+            if pygame.Rect.collidepoint(botao_testecoll,posicao_mouse):
+                print("clique")
+                botao_teste.desenhar_clique(tela)
+                pygame.display.flip()
+                pygame.time.delay(200)
+            ###botao teste###
+''
+
+
+
+
+
+ponto_mediox,ponto_medioy = 400,300
+altura = altura_imagem/2
+largura = largura_imagem/2
+
+altura_bit, largura_blit = (ponto_mediox-altura, ponto_medioy-largura) 
