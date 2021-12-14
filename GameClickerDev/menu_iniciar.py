@@ -35,8 +35,8 @@ pygame.display.update()
 
 iniciar_colli = botao_iniciar.rect
 sair_colli = botao_sair.rect
-
-while True:
+menu = True
+while menu:
     botao_iniciar.desenhar(tela)
     botao_sair.desenhar(tela)
     pygame.display.update()
@@ -48,9 +48,12 @@ while True:
                 botao_iniciar.desenhar_clique(tela)
                 pygame.display.flip()
                 pygame.time.delay(200)
-                print("start game now!")
+                v.game_on = True
+                menu = False
             if pygame.Rect.collidepoint(sair_colli,posicao_mouse):
                 botao_sair.desenhar_clique(tela)
                 pygame.display.flip()
                 pygame.time.delay(200)
+                pygame.quit()
+                sys.exit()
                 print("quit game now!")

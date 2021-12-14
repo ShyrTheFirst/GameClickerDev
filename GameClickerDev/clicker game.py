@@ -4,6 +4,7 @@ from classes import Botao, Personagem, Item, Monstro, chao
 from vars import sair_do_jogo
 import vars as v
 
+import menu_iniciar
 
 ##inicializando pygame##
 
@@ -87,13 +88,17 @@ chao = chao()
 char.mostrar_level()
 char.mostrar_dano()
 char.name(v.input_usuario)
+char.mostrar_classe()
 monstro = Monstro(v.game_level)
 botao_melhorar = Botao(v.botao_posx,0,1.5,botao_melhorar,botao_melhorar_press)
 botao_aleatorio = Botao(v.botao_posx,50,1.5,botao_aleatorio,botao_aleatorio_press)
 
 def blitar_tudo():
+   tela.fill((65,105,225))
    char.mostrar_level()
    char.mostrar_dano()
+   char.mostrar_classe()
+   char.limpar_classe()
    char.name(v.input_usuario)
    monstro.limpar_monstro()
    monstro.desenhar_monstro()        
@@ -115,17 +120,36 @@ while v.display_class == True:
     if v.game_level == 10 and v.escolha_classe == False:
        
        while v.escolha_classe == False:
+          sair_do_jogo()
           tela.fill((65,105,225))
-          botao_guerreiro = Botao(300,300,1.5,botao_guerreiro_sele,botao_guerreiro_press)
+          botao_guerreiro = Botao(300,200,1.5,botao_guerreiro_sele,botao_guerreiro_press)
           botao_mago = Botao(300,300,1.5,botao_mago_sele,botao_mago_press)
-          botao_arqueiro = Botao(300,300,1.5,botao_arqueiro_sele,botao_arqueiro_press)
+          botao_arqueiro = Botao(300,400,1.5,botao_arqueiro_sele,botao_arqueiro_press)
           botao_guerreiro.desenhar(tela)
           botao_mago.desenhar(tela)
           botao_arqueiro.desenhar(tela)
           pygame.display.update()
-          pygame.time.delay(2000)
-          ####criar botao para escolher a classe####
-          v.escolha_classe = True
+          ####clicar no botao para escolher a classe####
+          reta_guerreiro = botao_guerreiro.rect
+          reta_mago = botao_mago.rect
+          reta_arqueiro = botao_arqueiro.rect
+          if pygame.mouse.get_pressed()[0] == 1:
+             posicao_mouse = pygame.mouse.get_pos()
+             if pygame.Rect.collidepoint(reta_guerreiro,posicao_mouse):
+                char.mudar_classe('guerreiro')
+                v.guerreiro = True
+                blitar_tudo()
+                v.escolha_classe = True
+             if pygame.Rect.collidepoint(reta_mago,posicao_mouse):
+                char.mudar_classe('mago')
+                v.mago = True
+                blitar_tudo()
+                v.escolha_classe = True
+             if pygame.Rect.collidepoint(reta_arqueiro,posicao_mouse):
+                char.mudar_classe('arqueiro')
+                v.arqueiro = True
+                blitar_tudo()
+                v.escolha_classe = True
 
 
 

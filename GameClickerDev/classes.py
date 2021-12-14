@@ -164,6 +164,17 @@ class Personagem():
    def mudar_classe(self,classe):
        self.classe = classe
        
+   def mostrar_classe(self):   
+       self.mostrarclassevar = "Sua classe e: %s" %(self.classe)
+       self.mostrarclasse = fonte.render(self.mostrarclassevar, 1, (255,255,255))
+       tela.blit(self.mostrarclasse, (25,110))
+       
+   def limpar_classe(self):        
+       sizex_classe,sizey_classe = pygame.font.Font.size(fonte,self.mostrarclassevar)
+       limpar_classe_rect = pygame.Rect(25,85,sizex_classe,sizey_classe)
+       pygame.draw.rect(tela,(65,105,225),limpar_classe_rect)
+       
+       
    def desenhar_char(self):
         self.charx = 25
         self.chary = 200
