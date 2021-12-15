@@ -139,6 +139,15 @@ class Personagem():
        self.level = v.game_level
        self.dano_normal += 1
 
+   def inventario(self):
+       self.dinheiro = 0
+       self.mostrarinvvar = "Voce tem: %s moedas " %(self.level)       
+       self.mostrarinv = fonte.render(self.mostrarinvvar, 1, (255,255,255))
+       tela.blit(self.mostrarinv, (25,135))
+
+   def adicionar_inventario(self):
+       self.dinheiro += random.randrange(1,10)*self.level
+
    def aumentar_dano(self):
        self.dano_arma = 0 + self.item.poder
        self.dano_total = self.dano_normal + self.dano_arma
@@ -238,6 +247,7 @@ class Monstro():
    def morte(self,player):
        v.game_level += 1
        player.levelup()
+       player.adicionar_inventario()
        v.novo_mob = True
 
 ##Fim Classe MONSTRO##
@@ -245,12 +255,20 @@ class Monstro():
 ##Classe CHAO##
 class chao():
     def __init__(self):
-        self.posx = 0
-        self.posy = 400
-        self.rect = pygame.Rect(self.posx,self.posy,800,600)
+        self.posx_chao = 0
+        self.posy_chao = 400
+        self.posx_fundo = 0
+        self.posy_fundo = 0
+        self.rect_fundo = pygame.Rect(self.posx_fundo,self.posy_fundo,800,600) 
+        self.rect = pygame.Rect(self.posx_chao,self.posy_chao,800,600)
 
     def desenhar(self):
-        self.color = v.cor_chao
-        pygame.draw.rect(tela,self.color,self.rect)
+        self.imagem_chao = pygame.image.load(r'imagens\chao.png').convert()
+        tela.blit(self.imagem_chao,(self.posx_chao,self.posy_chao))
+        
+    def desenhar_fundo(self):
+        self.imagem_fundo = pygame.image.load(r'imagens\fundo.png').convert()
+        tela.blit(self.imagem_fundo,(self.posx_fundo,self.posy_fundo))
+        pygame.display.update()
 
 ##Fim Classe CHAO##

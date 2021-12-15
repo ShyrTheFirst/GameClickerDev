@@ -7,6 +7,8 @@ from vars import sair_do_jogo
 pygame.font.init()
 font_default = pygame.font.get_default_font()
 fonte = pygame.font.Font(r'fontes\alagard.ttf',25)
+tela = pygame.display.set_mode((v.largura,v.altura))
+tela_escura = tela
 
 
 
@@ -16,13 +18,12 @@ def esperar(milissegundos):
     while time <= tempo_de_espera:
         time = pygame.time.get_ticks()
 
-def escrever_por_letra(frase,posx,posy,cor,tela,tempo):
+def escrever_por_letra(frase,posx,posy,cor,tela,tempo,fundo=tela_escura):
     escrever = ' '
     for letra in frase:
         escrever += letra
         mostrar_escrita = fonte.render(escrever,1,cor)
-        limpar_escrita_anterior = pygame.Rect(posx,posy,v.largura,v.altura)
-        pygame.draw.rect(tela,(65,105,225),limpar_escrita_anterior)
+        tela.blit(fundo,(0,0))
         tela.blit(mostrar_escrita,(posx,posy))
         pygame.display.update()
         sair_do_jogo()
