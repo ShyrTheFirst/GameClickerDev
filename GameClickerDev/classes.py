@@ -4,7 +4,7 @@ import vars as v
 import itens as i
 from dividir_linhas import dividir_linhas
 from escrita_por_letra import escrever_por_letra as escrever
-from itens import escolher_monstro,escolher_char,lista_nomes_aprendiz,lista_nomes_guerreiro,lista_nomes_mago,lista_nomes_arqueiro,escolher_arma
+from itens import escolher_monstro,escolher_char,lista_nomes_aprendiz,lista_nomes_espadachim,lista_nomes_guerreiro,lista_nomes_mago,lista_nomes_arqueiro,escolher_arma
 
 pygame.init()
 pygame.font.init()
@@ -47,7 +47,7 @@ class Item():
         self.poder = 0
         self.bonus = 0
         self.aumento_poder = 0
-        self.item_name = 'Espada matadora de mundos celestial'
+        self.item_name = 'Espada'
         self.imagem_item = escolher_arma(nivel,'aprendiz')
         
     def melhorar_item(self,player):
@@ -56,22 +56,26 @@ class Item():
         player.aumentar_dano()      
 
     def gerar_item(self,player,nivel,tela):
+        if nivel <= 0:
+            self.player_nv = 1
+        else:
+            self.player_nv = nivel
         if v.guerreiro:
-            self.item_name = lista_nomes_guerreiro()
-            self.imagem_item = escolher_arma(nivel,'guerreiro')
+            self.imagem_item = escolher_arma(self.player_nv,'guerreiro')
             
         if v.mago:
-            self.item_name = lista_nomes_mago()
-            self.imagem_item = escolher_arma(nivel,'mago')
+            self.imagem_item = escolher_arma(self.player_nv,'mago')
             
         if v.arqueiro:
-            self.item_name = lista_nomes_arqueiro()
-            self.imagem_item = escolher_arma(nivel,'arqueiro')
+            self.imagem_item = escolher_arma(self.player_nv,'arqueiro')
+            
+        if v.espadachim:
+            self.imagem_item = escolher_arma(self.player_nv,'espadachim')
             
         if v.aprendiz:
-            self.item_name = lista_nomes_aprendiz()
-            self.imagem_item = escolher_arma(nivel,'aprendiz')
-            
+            self.imagem_item = escolher_arma(self.player_nv,'aprendiz')
+
+        self.limpar_item()
         self.desenhar_item(tela)
         player.aumentar_dano()
 
@@ -105,10 +109,13 @@ class Item():
             self.item_name = lista_nomes_mago()
             
         if v.arqueiro:
-            self.item_name = v.lista_nomes_arqueiro()
+            self.item_name = lista_nomes_arqueiro()
             
         if v.aprendiz:
             self.item_name = lista_nomes_aprendiz()
+            
+        if v.espadachim:
+            self.item_name = lista_nomes_espadachim()
         self.desenhar_item(tela)
         player.aumentar_dano()
         

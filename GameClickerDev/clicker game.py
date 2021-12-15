@@ -35,6 +35,8 @@ botao_arqueiro_sele = pygame.image.load(r'imagens\arqueiro.png')
 botao_guerreiro_press = pygame.image.load(r'imagens\guerreiro_press.png')
 botao_mago_press = pygame.image.load(r'imagens\mago_press.png')
 botao_arqueiro_press = pygame.image.load(r'imagens\arqueiro_press.png')
+botao_espadachim_sele = pygame.image.load(r'imagens\espadachim.png')
+botao_espadachim_press = pygame.image.load(r'imagens\espadachim_press.png')
 
 
 ##fim da inicialização do pygame##
@@ -96,6 +98,7 @@ botao_aleatorio = Botao(v.botao_posx,50,1.5,botao_aleatorio,botao_aleatorio_pres
 def blitar_tudo():
    tela.fill((65,105,225))
    char.mostrar_level()
+   char.limpar_dano()
    char.mostrar_dano()
    char.mostrar_classe()
    char.limpar_classe()
@@ -122,32 +125,46 @@ while v.display_class == True:
        while v.escolha_classe == False:
           sair_do_jogo()
           tela.fill((65,105,225))
-          botao_guerreiro = Botao(300,200,1.5,botao_guerreiro_sele,botao_guerreiro_press)
-          botao_mago = Botao(300,300,1.5,botao_mago_sele,botao_mago_press)
-          botao_arqueiro = Botao(300,400,1.5,botao_arqueiro_sele,botao_arqueiro_press)
+          mensagem_escolha = fonte.render("Escolha sua classe:", 1, (255,255,255))
+          tela.blit(mensagem_escolha,(100,100))
+          botao_guerreiro = Botao(100,200,1.5,botao_guerreiro_sele,botao_guerreiro_press)
+          botao_mago = Botao(250,200,1.5,botao_mago_sele,botao_mago_press)
+          botao_arqueiro = Botao(400,200,1.5,botao_arqueiro_sele,botao_arqueiro_press)
+          botao_espadachim = Botao(550,200,1.5,botao_espadachim_sele,botao_espadachim_press)
           botao_guerreiro.desenhar(tela)
           botao_mago.desenhar(tela)
           botao_arqueiro.desenhar(tela)
+          botao_espadachim.desenhar(tela)
           pygame.display.update()
           ####clicar no botao para escolher a classe####
           reta_guerreiro = botao_guerreiro.rect
           reta_mago = botao_mago.rect
           reta_arqueiro = botao_arqueiro.rect
+          reta_espadachim = botao_espadachim.rect
           if pygame.mouse.get_pressed()[0] == 1:
              posicao_mouse = pygame.mouse.get_pos()
              if pygame.Rect.collidepoint(reta_guerreiro,posicao_mouse):
                 char.mudar_classe('guerreiro')
                 v.guerreiro = True
+                v.aprendiz = False
                 blitar_tudo()
                 v.escolha_classe = True
              if pygame.Rect.collidepoint(reta_mago,posicao_mouse):
                 char.mudar_classe('mago')
                 v.mago = True
+                v.aprendiz = False
                 blitar_tudo()
                 v.escolha_classe = True
              if pygame.Rect.collidepoint(reta_arqueiro,posicao_mouse):
                 char.mudar_classe('arqueiro')
                 v.arqueiro = True
+                v.aprendiz = False
+                blitar_tudo()
+                v.escolha_classe = True
+             if pygame.Rect.collidepoint(reta_espadachim,posicao_mouse):
+                char.mudar_classe('espadachim')
+                v.espadachim = True
+                v.aprendiz = False
                 blitar_tudo()
                 v.escolha_classe = True
 
@@ -159,6 +176,10 @@ while v.display_class == True:
     if v.novo_mob:
         sair_do_jogo()
         monstro = Monstro(v.game_level)
+        v.mob_killed += 1
+        v.player_nv = round(v.mob_killed/10)
+        print(v.player_nv)
+        item_arma.gerar_item(char,v.player_nv,tela)
         v.novo_mob = False
     else:
         #blitar tela do jogo#

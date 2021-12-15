@@ -1,7 +1,20 @@
 import random, pygame
 
-
 def lista_nomes_aprendiz():
+    tirar_rand = []
+    nome_final = ""
+    primeiro_nome = ['Espada', 'Adaga', 'Faca']
+    segundo_nome = ['matadora','assassina']
+    terceiro_nome = ['de mundos']
+    quarto_nome = ['celestial','lendaria','real']
+    quant_nomes = random.randrange(1,5)
+    lista_listas_nomes = [primeiro_nome,segundo_nome,terceiro_nome,quarto_nome]
+    for num1 in range(0,quant_nomes):
+        tirar_rand.append(lista_listas_nomes[num1])
+    for num2 in range(0,len(tirar_rand)):
+        nome_final += " " + random.choice(tirar_rand[num2])
+    return nome_final
+def lista_nomes_espadachim():
     tirar_rand = []
     nome_final = ""
     primeiro_nome = ['Espada', 'Adaga', 'Faca', 'Lamina','Entalhadora','Empaladora','Espinho','Sabre','Punhal','Foice','Segadeira','Espeto','Ponta','Cimitarra']
@@ -66,10 +79,13 @@ def lista_nomes_mago():
 
   
 def escolher_arma(nivel_char,classe):
-    if nivel_char == 1:
-        if classe == 'aprendiz':
-            arma_aprendiz = pygame.image.load(r'armas\armanv1.png')
-            return arma_aprendiz
+    if classe == 'aprendiz':
+        arma_aprendiz = pygame.image.load(r'armas\armanv1.png')
+        return arma_aprendiz
+    if nivel_char <= 20:
+        if classe == 'espadachim':
+            arma_espadachim = pygame.image.load(r'armas\armanv1.png')
+            return arma_espadachim
         if classe == 'guerreiro':
             machado = pygame.image.load(r'armas\armanv1_machado.png')
             return machado
@@ -80,10 +96,10 @@ def escolher_arma(nivel_char,classe):
             cajado = pygame.image.load(r'armas\armanv1_cajado.png')
             return cajado
             
-    if nivel_char == 2:
-        if classe == 'aprendiz':
-            arma_aprendiz = pygame.image.load(r'armas\armanv2.png')
-            return arma_aprendiz
+    if nivel_char <= 30 and nivel_char >= 20:
+        if classe == 'espadachim':
+            arma_espadachim = pygame.image.load(r'armas\armanv2.png')
+            return arma_espadachim
         if classe == 'guerreiro':
             machado = pygame.image.load(r'armas\armanv2_machado.png')
             return machado
@@ -94,10 +110,10 @@ def escolher_arma(nivel_char,classe):
             cajado = pygame.image.load(r'armas\armanv2_cajado.png')
             return cajado
             
-    if nivel_char == 3:
-        if classe == 'aprendiz':
-            arma_aprendiz = pygame.image.load(r'armas\armanv3.png')
-            return arma_aprendiz
+    if nivel_char >= 30 and nivel_char <= 40:
+        if classe == 'espadachim':
+            arma_espadachim = pygame.image.load(r'armas\armanv3.png')
+            return arma_espadachim
         if classe == 'guerreiro':
             machado = pygame.image.load(r'armas\armanv3_machado.png')
             return machado
@@ -108,10 +124,10 @@ def escolher_arma(nivel_char,classe):
             cajado = pygame.image.load(r'armas\armanv3_cajado.png')
             return cajado
             
-    if nivel_char == 4:
-        if classe == 'aprendiz':
-            arma_aprendiz = pygame.image.load(r'armas\armanv4.png')
-            return arma_aprendiz
+    if nivel_char >= 40 and nivel_char <= 50:
+        if classe == 'espadachim':
+            arma_espadachim = pygame.image.load(r'armas\armanv4.png')
+            return arma_espadachim
         if classe == 'guerreiro':
             machado = pygame.image.load(r'armas\armanv4_machado.png')
             return machado
@@ -122,10 +138,10 @@ def escolher_arma(nivel_char,classe):
             cajado = pygame.image.load(r'armas\armanv4_cajado.png')
             return cajado
             
-    if nivel_char == 5:
-        if classe == 'aprendiz':
-            arma_aprendiz = pygame.image.load(r'armas\armanv5.png')
-            return arma_aprendiz
+    if nivel_char >= 50 and nivel_char <= 100 :
+        if classe == 'espadachim':
+            arma_espadachim = pygame.image.load(r'armas\armanv5.png')
+            return arma_espadachim
         if classe == 'guerreiro':
             machado = pygame.image.load(r'armas\armanv5_machado.png')
             return machado
@@ -136,10 +152,10 @@ def escolher_arma(nivel_char,classe):
             cajado = pygame.image.load(r'armas\armanv5_cajado.png')
             return cajado
             
-    if nivel_char == 6:
-        if classe == 'aprendiz':
-            arma_aprendiz = pygame.image.load(r'armas\armanv6.png')
-            return arma_aprendiz
+    if nivel_char >= 100 and nivel_char <= 200:
+        if classe == 'espadachim':
+            arma_espadachim = pygame.image.load(r'armas\armanv6.png')
+            return arma_espadachim
         if classe == 'guerreiro':
             machado = pygame.image.load(r'armas\armanv6_machado.png')
             return machado
@@ -150,10 +166,10 @@ def escolher_arma(nivel_char,classe):
             cajado = pygame.image.load(r'armas\armanv6_cajado.png')
             return cajado
             
-    if nivel_char == 7:
-        if classe == 'aprendiz':
-            arma_aprendiz = pygame.image.load(r'armas\armanv7.png')
-            return arma_aprendiz
+    if nivel_char >= 200 and nivel_char <= 300:
+        if classe == 'espadachim':
+            arma_espadachim = pygame.image.load(r'armas\armanv7.png')
+            return arma_espadachim
         if classe == 'guerreiro':
             machado = pygame.image.load(r'armas\armanv7_machado.png')
             return machado
@@ -164,10 +180,10 @@ def escolher_arma(nivel_char,classe):
             cajado = pygame.image.load(r'armas\armanv7_cajado.png')
             return cajado
             
-    if nivel_char == 8:
-        if classe == 'aprendiz':
-            arma_aprendiz = pygame.image.load(r'armas\armanv8.png')
-            return arma_aprendiz
+    if nivel_char >= 300 and nivel_char <= 400:
+        if classe == 'espadachim':
+            arma_espadachim = pygame.image.load(r'armas\armanv8.png')
+            return arma_espadachim
         if classe == 'guerreiro':
             machado = pygame.image.load(r'armas\armanv8_machado.png')
             return machado
@@ -178,10 +194,10 @@ def escolher_arma(nivel_char,classe):
             cajado = pygame.image.load(r'armas\armanv8_cajado.png')
             return cajado
             
-    if nivel_char == 9:
-        if classe == 'aprendiz':
-            arma_aprendiz = pygame.image.load(r'armas\armanv9.png')
-            return arma_aprendiz
+    if nivel_char >= 400 and nivel_char <= 500:
+        if classe == 'espadachim':
+            arma_espadachim = pygame.image.load(r'armas\armanv9.png')
+            return arma_espadachim
         if classe == 'guerreiro':
             machado = pygame.image.load(r'armas\armanv9_machado.png')
             return machado
@@ -192,10 +208,10 @@ def escolher_arma(nivel_char,classe):
             cajado = pygame.image.load(r'armas\armanv9_cajado.png')
             return cajado
             
-    if nivel_char == 10:
-        if classe == 'aprendiz':
-            arma_aprendiz = pygame.image.load(r'armas\armanv10.png')
-            return arma_aprendiz
+    if nivel_char >= 500:
+        if classe == 'espadachim':
+            arma_espadachim = pygame.image.load(r'armas\armanv10.png')
+            return arma_espadachim
         if classe == 'guerreiro':
             machado = pygame.image.load(r'armas\armanv10_machado.png')
             return machado
@@ -219,6 +235,9 @@ def escolher_char(classe='aprendiz'):
         return imagem_char
     if classe == 'mago':
         imagem_char = pygame.image.load(r'personagens\char_mago.png')
+        return imagem_char
+    if classe == 'espadachim':
+        imagem_char = pygame.image.load(r'personagens\char_espadachim.png')
         return imagem_char
 
 def escolher_monstro():

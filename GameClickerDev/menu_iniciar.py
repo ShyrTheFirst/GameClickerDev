@@ -13,7 +13,7 @@ pygame.init()
 pygame.font.init()
 pygame.display.set_caption('GameClickerDev')
 tela = pygame.display.set_mode((v.largura,v.altura))
-tela.fill((0,0,0))
+tela.fill((65,105,225))
 
 #fontes#
 font_default = pygame.font.get_default_font()
@@ -35,8 +35,14 @@ pygame.display.update()
 
 iniciar_colli = botao_iniciar.rect
 sair_colli = botao_sair.rect
+
+frase = 'Game Dev Clicker'
+escrever(frase,300,160,(255,255,255),tela,50)
 menu = True
 while menu:
+    sair_do_jogo()
+    
+    
     botao_iniciar.desenhar(tela)
     botao_sair.desenhar(tela)
     pygame.display.update()
