@@ -1,0 +1,7 @@
+criar var dinheiro
+adicionar dinheiro ao matar mob (variavel com base no nivel)
+Gerar item, melhorar item custar dinheiro
+
+salvar pontuacao ao sair (salvar em .csv?)(nome + mobs mortos + dano + nivel char)
+criar botao pontuacao no iniciar
+mostrar pontuacao salva
