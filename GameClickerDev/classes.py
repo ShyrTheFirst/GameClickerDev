@@ -1,5 +1,4 @@
 import pygame,sys,random
-from vars import sair_do_jogo
 import vars as v
 import itens as i
 from dividir_linhas import dividir_linhas
@@ -43,19 +42,20 @@ class Botao():
         
 ##Classe ITEM##
 class Item():
-    def __init__(self,nivel=1):
+    def __init__(self,player,tela,nivel=1):
+        self.player = player
+        self.tela = tela
         self.poder = 0
         self.bonus = 0
         self.aumento_poder = 0
         self.item_name = 'Espada'
         self.imagem_item = escolher_arma(nivel,'aprendiz')
         
-    def melhorar_item(self,player):
+    def melhorar_item(self):
         self.poder += 1
-        self.bonus += 1
-        player.aumentar_dano()      
+        self.bonus += 1    
 
-    def gerar_item(self,player,nivel,tela):
+    def gerar_item(self,nivel):
         if nivel <= 0:
             self.player_nv = 1
         else:
@@ -75,11 +75,9 @@ class Item():
         if v.aprendiz:
             self.imagem_item = escolher_arma(self.player_nv,'aprendiz')
 
-        self.limpar_item()
-        self.desenhar_item(tela)
-        player.aumentar_dano()
+        self.desenhar_item()
 
-    def desenhar_item(self,tela):
+    def desenhar_item(self):
         self.itemx = 675
         self.itemy = 200
         self.nomeitemx = 600
@@ -92,14 +90,7 @@ class Item():
             tela.blit(self.blitar_palavra,(self.nomeitemx,self.nomeitemy))
             self.nomeitemy += 25
             
-        
-        
-
-    def limpar_item(self):
-       reta_limpar_item = pygame.Rect(550,200,400,200)
-       pygame.draw.rect(tela,(65,105,225),reta_limpar_item)
-
-    def item_aleatorio(self,player,tela):
+    def item_aleatorio(self):
         prob_poder = random.randrange(1,100)
         self.poder += prob_poder
         if v.guerreiro:
@@ -116,8 +107,11 @@ class Item():
             
         if v.espadachim:
             self.item_name = lista_nomes_espadachim()
-        self.desenhar_item(tela)
-        player.aumentar_dano()
+        self.desenhar_item()
+
+    def limpar_item(self):
+       reta_limpar_item = pygame.Rect(550,200,400,200)
+       pygame.draw.rect(tela,(65,105,225),reta_limpar_item)
         
 
         
@@ -126,55 +120,46 @@ class Item():
 
 ##Classe PERSONAGEM##
 class Personagem():
-   def __init__(self,item,classe='aprendiz'):
+   def __init__(self,classe='aprendiz'):
+       self.dinheiro = 0
        self.classe = classe
        self.level = v.game_level
-       self.item = item
        self.dano_normal = 1
-       self.dano_arma = 0 + item.poder
+       self.dano_arma = 0
        self.dano_total = self.dano_normal+self.dano_arma
-       self.imagem_char = escolher_char(self.classe)
+       self.mostrarlevelvar = ""
+       self.mostrardanovar = ""
+       
 
    def levelup(self):
        self.level = v.game_level
        self.dano_normal += 1
 
-   def inventario(self):
-       self.dinheiro = 0
-       self.mostrarinvvar = "Voce tem: %s moedas " %(self.level)       
+   def inventario(self):       
+       self.mostrarinvvar = "Voce tem: %s moedas " %(self.dinheiro)       
        self.mostrarinv = fonte.render(self.mostrarinvvar, 1, (255,255,255))
        tela.blit(self.mostrarinv, (25,135))
 
    def adicionar_inventario(self):
        self.dinheiro += random.randrange(1,10)*self.level
 
-   def aumentar_dano(self):
-       self.dano_arma = 0 + self.item.poder
+   def aumentar_dano(self,item):
+       self.dano_arma = 0 + item.poder
        self.dano_total = self.dano_normal + self.dano_arma
        
    def mostrar_level(self):   
        self.mostrarlevelvar = "Voce esta no level: %s" %(self.level)
        self.mostrarlevel = fonte.render(self.mostrarlevelvar, 1, (255,255,255))
        tela.blit(self.mostrarlevel, (25,60))
-       
-   def limpar_level(self):        
-       sizex,sizey = pygame.font.Font.size(fonte,self.mostrarlevelvar)
-       limpar_rect = pygame.Rect(25,60,sizex,sizey)
-       pygame.draw.rect(tela,(65,105,225),limpar_rect)
 
    def mostrar_dano(self):   
        self.mostrardanovar = "Seu dano e: %s" %(self.dano_total)
        self.mostrardano = fonte.render(self.mostrardanovar, 1, (255,255,255))
        tela.blit(self.mostrardano, (25,85))
-       
-   def limpar_dano(self):        
-       sizex_dano,sizey_dano = pygame.font.Font.size(fonte,self.mostrardanovar)
-       limpar_dano_rect = pygame.Rect(25,85,sizex_dano,sizey_dano)
-       pygame.draw.rect(tela,(65,105,225),limpar_dano_rect)
 
-   def name(self, name):
-      name = str(name)
-      mostrar_nome = fonte.render(name, 1, (255,255,255))
+   def nome(self, nome):
+      nome = str(nome)
+      mostrar_nome = fonte.render(nome, 1, (255,255,255))
       tela.blit(mostrar_nome, (30,30))
 
    def mudar_classe(self,classe):
@@ -183,22 +168,40 @@ class Personagem():
    def mostrar_classe(self):   
        self.mostrarclassevar = "Sua classe e: %s" %(self.classe)
        self.mostrarclasse = fonte.render(self.mostrarclassevar, 1, (255,255,255))
-       tela.blit(self.mostrarclasse, (25,110))
-       
-   def limpar_classe(self):        
-       sizex_classe,sizey_classe = pygame.font.Font.size(fonte,self.mostrarclassevar)
-       limpar_classe_rect = pygame.Rect(25,85,sizex_classe,sizey_classe)
-       pygame.draw.rect(tela,(65,105,225),limpar_classe_rect)
-       
+       tela.blit(self.mostrarclasse, (25,110))       
        
    def desenhar_char(self):
-        self.charx = 25
-        self.chary = 200
-        tela.blit(self.imagem_char,(self.charx,self.chary))
+       char_cabeca =escolher_char(self.classe)[0]
+       char_olhos =escolher_char(self.classe)[1]
+       char_torso =escolher_char(self.classe)[2]
+       char_pes =escolher_char(self.classe)[3]
+       char_maos =escolher_char(self.classe)[4]
+       posx_cabeca,posy_cabeca = 0,0
+       posx_olhos,posy_olhos = 0,0
+       posx_torso,posy_torso = 0,0
+       posx_pes,posy_pes = 0,0
+       posx_maos,posy_maos = 0,0
+       
+       tela.blit(char_cabeca,(posx_cabeca,posy_cabeca))
+       tela.blit(char_olhos,(posx_olhos,posy_olhos))
+       tela.blit(char_torso,(posx_torso,posy_torso))
+       tela.blit(char_pes,(posx_pes,posy_pes))
+       tela.blit(char_maos,(posx_maos,posy_maos))
+       pygame.display.flip
 
    def limpar_char(self):
        reta_limpar_char = pygame.Rect(25,200,150,150)
        pygame.draw.rect(tela,(65,105,225),reta_limpar_char)
+
+   def limpar_dano(self):        
+       sizex_dano,sizey_dano = pygame.font.Font.size(fonte,self.mostrardanovar)
+       limpar_dano_rect = pygame.Rect(25,85,sizex_dano,sizey_dano)
+       pygame.draw.rect(tela,(65,105,225),limpar_dano_rect)
+
+   def limpar_level(self):        
+       sizex,sizey = pygame.font.Font.size(fonte,self.mostrarlevelvar)
+       limpar_rect = pygame.Rect(25,60,sizex,sizey)
+       pygame.draw.rect(tela,(65,105,225),limpar_rect)
        
        
 
@@ -207,35 +210,60 @@ class Personagem():
 ##Classe MONSTRO##
 class Monstro():
    def __init__(self, dificuldade):
-        self.posx_monstro = 300
-        self.posy_monstro = 200
-        self.imagem_monstro,self.imagem_monstro_dano = escolher_monstro()
-        self.reta_monstro = self.imagem_monstro.get_rect()
-        self.reta_monstro.topleft = self.posx_monstro,self.posy_monstro
-        self.posx_mob = self.posx_monstro     
-        self.posy_mob = self.posy_monstro
         
         self.dificuldade = dificuldade
         self.set_vida = int(self.dificuldade*10)
+
+   def escolher_monstro(self):
+       
+       self.monstro_cabeca =escolher_monstro()[0]
+       self.monstro_olhos,self.monstro_olhos_dano =escolher_monstro()[1]
+       self.monstro_torso =escolher_monstro()[2]
+       self.monstro_pes =escolher_monstro()[3]
+       self.monstro_maos =escolher_monstro()[4]
+       
+       self.posx_cabeca,self.posy_cabeca = 290,218
+       self.posx_olhos,self.posy_olhos = 290,220
+       self.posx_torso,self.posy_torso = 290,220
+       self.posx_pes,self.posy_pes = 290,220
+       self.posx_maos,self.posy_maos = 290,220
        
    def desenhar_monstro(self):
-      tela.blit(self.imagem_monstro,(self.posx_mob,self.posy_mob))
-      pygame.display.flip()
-      
-   def limpar_monstro(self):
-       reta_limpar_monstro = pygame.Rect(300,200,200,200)
-       pygame.draw.rect(tela,(65,105,225),reta_limpar_monstro)
+       
+       tela.blit(self.monstro_cabeca,(self.posx_cabeca,self.posy_cabeca))
+       tela.blit(self.monstro_olhos,(self.posx_olhos,self.posy_olhos))
+       tela.blit(self.monstro_torso,(self.posx_torso,self.posy_torso))
+       tela.blit(self.monstro_pes,(self.posx_pes,self.posy_pes))
+       tela.blit(self.monstro_maos,(self.posx_maos,self.posy_maos))
+       pygame.display.flip
+       
+       self.reta_monstro_cabeca = pygame.Rect(290,218,50,50)
+       self.reta_monstro_torso = pygame.Rect(290,220,50,50)
+       self.reta_monstro_pes = pygame.Rect(290,220,50,50)
+       self.reta_monstro_maos =  pygame.Rect(290,220,50,50)
 
+   def desenhar_monstro_dano(self):
+       tela.blit(self.monstro_cabeca,(self.posx_cabeca-10,self.posy_cabeca-10))
+       tela.blit(self.monstro_olhos_dano,(self.posx_olhos-10,self.posy_olhos-10))
+       tela.blit(self.monstro_torso,(self.posx_torso-10,self.posy_torso-10))
+       tela.blit(self.monstro_pes,(self.posx_pes-10,self.posy_pes-10))
+       tela.blit(self.monstro_maos,(self.posx_maos-10,self.posy_maos-10))
+       pygame.display.flip
       
    def vida(self):
        self.mostrar_vida = "HP: %i" %(self.set_vida)
        self.mostrar_vida_render = fonte.render(self.mostrar_vida, 1, (255,255,255))
        tela.blit(self.mostrar_vida_render, (340,410))
+
+   def limpar_monstro(self):
+       reta_limpar_monstro = pygame.Rect(300,200,200,200)
+       pygame.draw.rect(tela,(65,105,225),reta_limpar_monstro)
       
    def clicou(self,player):
       dano_total = player.dano_total
       self.set_vida -= dano_total
-      tela.blit(self.imagem_monstro_dano,(self.posx_mob,self.posy_mob))
+      self.limpar_monstro()
+      self.desenhar_monstro_dano()
       pygame.display.flip()
       pygame.time.delay(200)
       if self.set_vida <= 0:
@@ -257,18 +285,10 @@ class chao():
     def __init__(self):
         self.posx_chao = 0
         self.posy_chao = 400
-        self.posx_fundo = 0
-        self.posy_fundo = 0
-        self.rect_fundo = pygame.Rect(self.posx_fundo,self.posy_fundo,800,600) 
         self.rect = pygame.Rect(self.posx_chao,self.posy_chao,800,600)
 
     def desenhar(self):
         self.imagem_chao = pygame.image.load(r'imagens\chao.png').convert()
         tela.blit(self.imagem_chao,(self.posx_chao,self.posy_chao))
-        
-    def desenhar_fundo(self):
-        self.imagem_fundo = pygame.image.load(r'imagens\fundo.png').convert()
-        tela.blit(self.imagem_fundo,(self.posx_fundo,self.posy_fundo))
-        pygame.display.update()
 
 ##Fim Classe CHAO##

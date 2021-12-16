@@ -225,34 +225,83 @@ def escolher_arma(nivel_char,classe):
 
 def escolher_char(classe='aprendiz'):
     if classe == 'aprendiz':
-        imagem_char = pygame.image.load(r'personagens\char_aprendiz.png')
+        imagem_char_cabeca = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_olhos = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_torso = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_pes = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_maos = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        cabeca_escolhido = random.choice(imagem_char_cabeca)
+        olhos_escolhido = random.choice(imagem_char_olhos)
+        torso_escolhido = random.choice(imagem_char_torso)
+        pes_escolhido = random.choice(imagem_char_pes)
+        maos_escolhido = random.choice(imagem_char_maos)
+        imagem_char = (cabeca_escolhido,olhos_escolhido,torso_escolhido,pes_escolhido,maos_escolhido)
         return imagem_char
     if classe == 'guerreiro':
-        imagem_char = pygame.image.load(r'personagens\char_guerreiro.png')
+        imagem_char_cabeca = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_olhos = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_torso = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_pes = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_maos = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        cabeca_escolhido = random.choice(imagem_char_cabeca)
+        olhos_escolhido = random.choice(imagem_char_olhos)
+        torso_escolhido = random.choice(imagem_char_torso)
+        pes_escolhido = random.choice(imagem_char_pes)
+        maos_escolhido = random.choice(imagem_char_maos)
+        imagem_char = (cabeca_escolhido,olhos_escolhido,torso_escolhido,pes_escolhido,maos_escolhido)
         return imagem_char
     if classe == 'arqueiro':
-        imagem_char = pygame.image.load(r'personagens\char_arqueiro.png')
+        imagem_char_cabeca = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_olhos = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_torso = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_pes = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_maos = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        cabeca_escolhido = random.choice(imagem_char_cabeca)
+        olhos_escolhido = random.choice(imagem_char_olhos)
+        torso_escolhido = random.choice(imagem_char_torso)
+        pes_escolhido = random.choice(imagem_char_pes)
+        maos_escolhido = random.choice(imagem_char_maos)
+        imagem_char = (cabeca_escolhido,olhos_escolhido,torso_escolhido,pes_escolhido,maos_escolhido)
         return imagem_char
     if classe == 'mago':
-        imagem_char = pygame.image.load(r'personagens\char_mago.png')
+        imagem_char_cabeca = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_olhos = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_torso = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_pes = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_maos = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        cabeca_escolhido = random.choice(imagem_char_cabeca)
+        olhos_escolhido = random.choice(imagem_char_olhos)
+        torso_escolhido = random.choice(imagem_char_torso)
+        pes_escolhido = random.choice(imagem_char_pes)
+        maos_escolhido = random.choice(imagem_char_maos)
+        imagem_char = (cabeca_escolhido,olhos_escolhido,torso_escolhido,pes_escolhido,maos_escolhido)
         return imagem_char
     if classe == 'espadachim':
-        imagem_char = pygame.image.load(r'personagens\char_espadachim.png')
+        imagem_char_cabeca = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_olhos = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_torso = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_pes = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        imagem_char_maos = (pygame.image.load(r'personagens\char_aprendiz.png'),pygame.image.load(r'personagens\char_aprendiz.png'))
+        cabeca_escolhido = random.choice(imagem_char_cabeca)
+        olhos_escolhido = random.choice(imagem_char_olhos)
+        torso_escolhido = random.choice(imagem_char_torso)
+        pes_escolhido = random.choice(imagem_char_pes)
+        maos_escolhido = random.choice(imagem_char_maos)
+        imagem_char = (cabeca_escolhido,olhos_escolhido,torso_escolhido,pes_escolhido,maos_escolhido)
         return imagem_char
 
 def escolher_monstro():
-    monstro_1 = (pygame.image.load(r'monstros\monstro_1.png'), pygame.image.load(r'monstros\monstro_1_dano.png'))
-    monstro_2 = (pygame.image.load(r'monstros\monstro_2.png'), pygame.image.load(r'monstros\monstro_2_dano.png'))
-    monstro_3 = (pygame.image.load(r'monstros\monstro_3.png'), pygame.image.load(r'monstros\monstro_3_dano.png'))
-    monstro_4 = (pygame.image.load(r'monstros\monstro_4.png'), pygame.image.load(r'monstros\monstro_4_dano.png'))
-    monstro_5 = (pygame.image.load(r'monstros\monstro_5.png'), pygame.image.load(r'monstros\monstro_5_dano.png'))
-    monstro_6 = (pygame.image.load(r'monstros\monstro_6.png'), pygame.image.load(r'monstros\monstro_6_dano.png'))
-    monstro_7 = (pygame.image.load(r'monstros\monstro_7.png'), pygame.image.load(r'monstros\monstro_7_dano.png'))
-    monstro_8 = (pygame.image.load(r'monstros\monstro_8.png'), pygame.image.load(r'monstros\monstro_8_dano.png'))
-    monstro_9 = (pygame.image.load(r'monstros\monstro_9.png'), pygame.image.load(r'monstros\monstro_9_dano.png'))
-    monstro_10 = (pygame.image.load(r'monstros\monstro_10.png'), pygame.image.load(r'monstros\monstro_10_dano.png'))
-    lista_monstro = (monstro_1,monstro_2,monstro_3,monstro_4,monstro_5,monstro_6,monstro_7,monstro_8,monstro_9,monstro_10)
-    monstro_escolhido = random.choice(lista_monstro)
-    return monstro_escolhido
-        
-                
+    monstro_cabeca = (pygame.image.load(r'monstros\cabeca1.png'),pygame.image.load(r'monstros\cabeca2.png'),pygame.image.load(r'monstros\cabeca3.png'),pygame.image.load(r'monstros\cabeca4.png'),pygame.image.load(r'monstros\cabeca5.png'),pygame.image.load(r'monstros\cabeca6.png'),pygame.image.load(r'monstros\cabeca7.png'),pygame.image.load(r'monstros\cabeca8.png'),pygame.image.load(r'monstros\cabeca9.png'),pygame.image.load(r'monstros\cabeca10.png'),pygame.image.load(r'monstros\cabeca11.png'),pygame.image.load(r'monstros\cabeca12.png'))
+    monstro_olhos = ((pygame.image.load(r'monstros\olhos1.png'),pygame.image.load(r'monstros\olhos_dano1.png')),(pygame.image.load(r'monstros\olhos2.png'),pygame.image.load(r'monstros\olhos_dano1.png')),(pygame.image.load(r'monstros\olhos3.png'),pygame.image.load(r'monstros\olhos_dano1.png')),(pygame.image.load(r'monstros\olhos4.png'),pygame.image.load(r'monstros\olhos_dano2_1.png')),(pygame.image.load(r'monstros\olhos5.png'),pygame.image.load(r'monstros\olhos_dano2_2.png')),(pygame.image.load(r'monstros\olhos6.png'),pygame.image.load(r'monstros\olhos_dano2_3.png')),(pygame.image.load(r'monstros\olhos7.png'),pygame.image.load(r'monstros\olhos_dano3_1.png')),(pygame.image.load(r'monstros\olhos8.png'),pygame.image.load(r'monstros\olhos_dano3_2.png')),(pygame.image.load(r'monstros\olhos9.png'),pygame.image.load(r'monstros\olhos_dano3_3.png')),(pygame.image.load(r'monstros\olhos10.png'),pygame.image.load(r'monstros\olhos_dano4_1.png')),(pygame.image.load(r'monstros\olhos11.png'),pygame.image.load(r'monstros\olhos_dano4_2.png')),(pygame.image.load(r'monstros\olhos12.png'),pygame.image.load(r'monstros\olhos_dano4_3.png')))
+    monstro_torso = (pygame.image.load(r'monstros\torso1.png'),pygame.image.load(r'monstros\torso2.png'),pygame.image.load(r'monstros\torso3.png'),pygame.image.load(r'monstros\torso4.png'),pygame.image.load(r'monstros\torso5.png'),pygame.image.load(r'monstros\torso6.png'),pygame.image.load(r'monstros\torso7.png'),pygame.image.load(r'monstros\torso8.png'),pygame.image.load(r'monstros\torso9.png'),pygame.image.load(r'monstros\torso10.png'),pygame.image.load(r'monstros\torso11.png'),pygame.image.load(r'monstros\torso12.png'))
+    monstro_pes = (pygame.image.load(r'monstros\pes1.png'),pygame.image.load(r'monstros\pes2.png'),pygame.image.load(r'monstros\pes3.png'),pygame.image.load(r'monstros\pes4.png'),pygame.image.load(r'monstros\pes5.png'),pygame.image.load(r'monstros\pes6.png'),pygame.image.load(r'monstros\pes7.png'),pygame.image.load(r'monstros\pes8.png'),pygame.image.load(r'monstros\pes9.png'),pygame.image.load(r'monstros\pes10.png'),pygame.image.load(r'monstros\pes11.png'),pygame.image.load(r'monstros\pes12.png'))
+    monstro_maos = (pygame.image.load(r'monstros\maos1.png'),pygame.image.load(r'monstros\maos2.png'),pygame.image.load(r'monstros\maos3.png'),pygame.image.load(r'monstros\maos4.png'),pygame.image.load(r'monstros\maos5.png'),pygame.image.load(r'monstros\maos6.png'),pygame.image.load(r'monstros\maos7.png'),pygame.image.load(r'monstros\maos8.png'),pygame.image.load(r'monstros\maos9.png'),pygame.image.load(r'monstros\maos10.png'),pygame.image.load(r'monstros\maos11.png'),pygame.image.load(r'monstros\maos12.png'))
+    
+    cabeca_escolhido = random.choice(monstro_cabeca)
+    olhos_escolhido = random.choice(monstro_olhos)
+    torso_escolhido = random.choice(monstro_torso)
+    pes_escolhido = random.choice(monstro_pes)
+    maos_escolhido = random.choice(monstro_maos)
+    lista_escolhido = (cabeca_escolhido,olhos_escolhido,torso_escolhido,pes_escolhido,maos_escolhido)
+    
+    return lista_escolhido

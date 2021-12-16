@@ -25,10 +25,3 @@ aprendiz = True
 botao_posx = 600
 mob_killed = 0
 player_nv = 1
-
-
-def sair_do_jogo():
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()

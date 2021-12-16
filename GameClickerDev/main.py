@@ -1,7 +1,6 @@
 import pygame, sys, random
 from escrita_por_letra import escrever_por_letra as escrever
 from classes import Botao, Personagem, Item, Monstro, chao
-from vars import sair_do_jogo
 import vars as v
 
 import menu_iniciar
@@ -74,7 +73,7 @@ while v.game_on == True:
    pygame.display.update()
    
 ###FIM DA DEFINIÇÃO POR INPUT###
-   
+
 ###LIMPANDO A TELA E FAZENDO AJUSTES###
 tela.fill((65,105,225))
 pygame.display.update()
@@ -94,28 +93,7 @@ botao_aleatorio = Botao(v.botao_posx,50,1.5,botao_aleatorio,botao_aleatorio_pres
 
 ###CHAMANDO AS CLASSES###
 monstro.escolher_monstro()
-char.mostrar_level()
-char.mostrar_dano()
 char.nome(v.input_usuario)
-char.mostrar_classe()
-
-###
-def blitar_tudo():
-   tela.fill((65,105,225))
-   char.mostrar_level()
-   char.mostrar_dano()
-   char.mostrar_classe()
-   char.name(v.input_usuario)
-   monstro.desenhar_monstro()
-   char.desenhar_char()
-   item_arma.desenhar_item(tela)        
-   chao.desenhar()
-   monstro.vida()
-   botao_melhorar.desenhar(tela)
-   botao_aleatorio.desenhar(tela)
-   pygame.display.update()
-
-
 
 ###INICIO DO JOGO###
 while v.display_class == True:
@@ -166,15 +144,18 @@ while v.display_class == True:
         for event in pygame.event.get():
            if event.type == pygame.QUIT:
               pygame.quit()
-              sys.exit()
+              sys.exit()   
         monstro = Monstro(v.game_level)
         monstro.escolher_monstro()
-        item_arma.gerar_item(char,v.player_nv,tela)
+        item_arma.gerar_item(v.player_nv)
         v.novo_mob = False
     else:
         #blitar tela do jogo#
-        monstro.desenhar_monstro()
+        monstro.limpar_monstro()
+        monstro.desenhar_monstro()        
+        char.limpar_char()
         char.desenhar_char()
+        item_arma.limpar_item()
         item_arma.desenhar_item()        
         chao.desenhar()
         monstro.vida()
@@ -195,19 +176,26 @@ while v.display_class == True:
                 #collidepoint para o monstro#
                 if pygame.Rect.collidepoint(mob_reta,posicao_mouse):
                     monstro.clicou(char)
+                    char.limpar_level()
                     char.mostrar_level()
+                    char.limpar_dano()
                     char.mostrar_dano()
                     pygame.display.flip()                
                 if pygame.Rect.collidepoint(mob_reta_torso,posicao_mouse):
                     monstro.clicou(char)
+                    char.limpar_level()
                     char.mostrar_level()
                     char.mostrar_dano()
+                    char.limpar_dano()
                     pygame.display.flip()
                 #collidepoint para o botao melhorar#
                 if pygame.Rect.collidepoint(melhorar_reta,posicao_mouse):
                     botao_melhorar.desenhar_clique(tela)
                     item_arma.melhorar_item()
+                    item_arma.limpar_item()
+                    char.aumentar_dano(item_arma)
                     item_arma.desenhar_item()
+                    char.limpar_dano()
                     char.mostrar_dano()
                     pygame.display.flip()
                     pygame.time.delay(200)
@@ -215,7 +203,10 @@ while v.display_class == True:
                 if pygame.Rect.collidepoint(aleatorio_reta,posicao_mouse):
                     botao_aleatorio.desenhar_clique(tela)
                     item_arma.item_aleatorio()
+                    item_arma.limpar_item()
                     item_arma.desenhar_item()
+                    char.aumentar_dano(item_arma)
+                    char.limpar_dano()
                     char.mostrar_dano()
                     pygame.display.flip()
                     pygame.time.delay(200)
