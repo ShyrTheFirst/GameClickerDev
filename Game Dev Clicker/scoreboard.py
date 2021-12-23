@@ -3,6 +3,7 @@ import vars as v
 from dividir_linhas import dividir_linhas, dividir_score, topo_score
 from escrita_por_letra import escrever_por_letra as escrever
 import pygame
+import os
 
 
 #pygame#
@@ -49,11 +50,23 @@ def dados_score(player):
     df_score.to_csv('scoreboard.csv',index=False)
 
 def print_scoreboard():
-    scoreboard_string = str(pd.read_csv('scoreboard.csv'))
-    scoreboard = dividir_score(scoreboard_string)
-    scoreboard_topo = topo_score(scoreboard_string)
-    escrever(scoreboard_topo,300,235,(255,255,255),tela,200)
-    score_x = 300
-    score_y = 260
-    escrever(scoreboard,score_x,score_y,(255,255,255),tela,200)    
+    if os.path.isfile('./scoreboard.csv')== False:
+        tela.fill((65,105,225))
+        pygame.display.update()
+        frase_01 = "You don't have a scoreboard yet"
+        escrever(frase_01,300,260,(255,255,255),tela,50)
+        pygame.display.flip()        
+        pygame.time.delay(300)
+        tela.fill((65,105,225))
+        pygame.display.update()
+        v.mostrar_score = False        
+    
+    else:
+        scoreboard_string = str(pd.read_csv('scoreboard.csv'))
+        scoreboard = dividir_score(scoreboard_string)
+        scoreboard_topo = topo_score(scoreboard_string)
+        escrever(scoreboard_topo,300,235,(255,255,255),tela,200)
+        score_x = 300
+        score_y = 260
+        escrever(scoreboard,score_x,score_y,(255,255,255),tela,200)    
     

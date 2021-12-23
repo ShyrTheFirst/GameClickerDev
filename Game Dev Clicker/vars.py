@@ -22,6 +22,7 @@ mago = False
 arqueiro = False
 espadachim = False
 aprendiz = True
+mostrar_score = False
 botao_posx = 400
 mob_killed = 0
 player_nv = 1

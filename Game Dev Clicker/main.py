@@ -116,9 +116,19 @@ while v.display_class == True:
          sys.exit()
     v.player_nv = round((v.game_level)/10)
     #verificar nivel do jogo#
-    if v.game_level == 10 and v.escolha_classe == False:       
+    if v.game_level == 10 and v.escolha_classe == False:
+       tela.fill((65,105,225))
+       pygame.display.update()
+       pygame.time.delay(100)
+       for event in pygame.event.get():
+          if event.type == pygame.QUIT:
+             pygame.quit()
+             sys.exit()
        while v.escolha_classe == False:
-          tela.fill((65,105,225))
+          for event in pygame.event.get():
+             if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
           botao_guerreiro = Botao(300,200,1.5,botao_guerreiro_sele,botao_guerreiro_press)
           botao_mago = Botao(300,300,1.5,botao_mago_sele,botao_mago_press)
           botao_arqueiro = Botao(300,400,1.5,botao_arqueiro_sele,botao_arqueiro_press)
@@ -143,6 +153,14 @@ while v.display_class == True:
                 v.guerreiro = True
                 v.aprendiz = False
                 v.escolha_classe = True
+                tela.fill((65,105,225))
+                pygame.display.update()
+                frase_01 = "You choose: %s" %('warrior')
+                escrever(frase_01,300,260,(255,255,255),tela,200)
+                pygame.display.flip()
+                pygame.time.delay(200)
+                tela.fill((65,105,225))
+                pygame.display.update()
              if pygame.Rect.collidepoint(reta_mago,posicao_mouse):
                 botao_mago.desenhar_clique(tela)
                 pygame.display.flip()
@@ -151,6 +169,14 @@ while v.display_class == True:
                 v.mago = True
                 v.aprendiz = False
                 v.escolha_classe = True
+                tela.fill((65,105,225))
+                pygame.display.update()
+                frase_01 = "You choose: %s" %('mage')
+                escrever(frase_01,300,260,(255,255,255),tela,200)
+                pygame.display.flip()
+                pygame.time.delay(200)
+                tela.fill((65,105,225))
+                pygame.display.update()
              if pygame.Rect.collidepoint(reta_arqueiro,posicao_mouse):
                 botao_arqueiro.desenhar_clique(tela)
                 pygame.display.flip()
@@ -159,6 +185,14 @@ while v.display_class == True:
                 v.arqueiro = True
                 v.aprendiz = False
                 v.escolha_classe = True
+                tela.fill((65,105,225))
+                pygame.display.update()
+                frase_01 = "You choose: %s" %('bowman')
+                escrever(frase_01,300,260,(255,255,255),tela,200)
+                pygame.display.flip()
+                pygame.time.delay(200)
+                tela.fill((65,105,225))
+                pygame.display.update()
              if pygame.Rect.collidepoint(reta_espadachim,posicao_mouse):
                 botao_espadachim.desenhar_clique(tela)
                 pygame.display.flip()
@@ -167,6 +201,14 @@ while v.display_class == True:
                 v.espadachim = True
                 v.aprendiz = False
                 v.escolha_classe = True
+                tela.fill((65,105,225))
+                pygame.display.update()
+                frase_01 = "You choose: %s" %('swordman')
+                escrever(frase_01,300,260,(255,255,255),tela,200)
+                pygame.display.flip()
+                pygame.time.delay(200)
+                tela.fill((65,105,225))
+                pygame.display.update()
 
           
     #CRIAR MOB#

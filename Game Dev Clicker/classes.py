@@ -142,7 +142,7 @@ class Personagem():
        tela.blit(self.mostrarinv, (25,135))
 
    def adicionar_inventario(self):
-       self.dinheiro += random.randrange(1,10)*self.level
+       self.dinheiro += round((random.randrange(1,10)*self.level)+(v.custo_aleatorio/v.custo))
 
    def limpar_inventario(self):
        limpar_inv = pygame.Rect(25,135,500,25)

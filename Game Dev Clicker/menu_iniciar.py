@@ -71,7 +71,7 @@ while menu:
             if pygame.Rect.collidepoint(score_colli,posicao_mouse):
                 botao_score.desenhar_clique(tela)
                 pygame.display.flip()
-                mostrar_score = True
+                v.mostrar_score = True
                 pygame.time.delay(200)
                 #desenhar na tela o score#
                 
@@ -80,7 +80,7 @@ while menu:
                 botao_sair_score = Botao(25,500,1.5,botao_sair_normal,botao_sair_press)
                 print_scoreboard()
                 pygame.display.flip()
-                while mostrar_score:
+                while v.mostrar_score:
                     botao_sair_score.desenhar(tela)
                     pygame.display.flip()
                     
@@ -95,6 +95,6 @@ while menu:
                                 botao_sair_score.desenhar_clique(tela)
                                 pygame.display.flip()
                                 pygame.time.delay(200)
-                                mostrar_score = False
+                                v.mostrar_score = False
                                 escrever(frase,300,160,(255,255,255),tela,50)
                 
