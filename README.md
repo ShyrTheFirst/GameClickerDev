@@ -12,6 +12,13 @@ I hope you have some fun playing althought you can't save and things like that..
 
 How-to-play
 -----------------------------------------------------------------------------------------------------------------
+You need the following to execute the game:
+python 3.0 or higher
+libraries: pygame
+
+Unfortanely I coudn't create a .exe file for this game yet :( .
+
+
 This game is simple: just click in the bug in the middle of the screen until you kill it. 
 Spend the money to improve damage and change your weapon!
 
